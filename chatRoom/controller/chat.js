@@ -30,9 +30,12 @@ async function chat(ctx, next) {
 
     if (user) {
         user = JSON.parse(user)
+        console.log(user)
         if (user.name) {
             let users = await services.find({})
+            let name = user.name
             ctx.state = {
+                name,
                 users
             }
             await ctx.render('chat', ctx.state)
@@ -49,18 +52,7 @@ async function getChatBox(ctx, next) {
     const { content } = ctx.request.body
 
     let user = ctx.cookies.get('username')
-    let username = JSON.parse(user)
-    let name = username.name
-    let avatar = username.avatar
-
-    let data = {
-        nickName: name,
-        content,
-        avatar,
-        createAt: new Date()
-    }
-
-    await services.insert(data)
+    await services.setContents(user, content)
     let result = await services.find({})
     ctx.response.body = result
 
@@ -70,14 +62,26 @@ async function checkBox(ctx, next) {
     const { content } = ctx.request.body
 
 
-    let flag = await services.find({})
-    if (flag) {
-        if (JSON.stringify(flag) != '[]') {
-            ctx.response.body = flag
+    let flagT = await services.findandsort()
+    if (flagT) {
+        if (JSON.stringify(flagT) != '[]') {
+            ctx.response.body = {
+                flagT,
+                content: 'success'
+            }
+        } else {
+            ctx.response.body = {
+                content: 'failed'
+            }
         }
     }
 
 
+}
+
+async function getTips(ctx, next) {
+    let Tips = await services.find({})
+    ctx.response.body = Tips
 }
 
 module.exports = {
@@ -85,5 +89,6 @@ module.exports = {
     getChat,
     chat,
     getChatBox,
-    checkBox
+    checkBox,
+    getTips
 }

@@ -1,12 +1,16 @@
 {% extends 'layout.njk' %}
 
 {% block style %}
-    {# <meta http-equiv="Refresh" content="10"/> #}
     <link rel='stylesheet' href='/css/chat.css'>
 {% endblock %}
 
 {% block content %}
     <div class="container">
+        <div class="header">
+            <div class="title_name">{{name}}</div>
+            <span class="tips"></span>
+        </div>
+
         <div class="content">
 
             {% for items in users %}

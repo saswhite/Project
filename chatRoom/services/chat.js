@@ -12,8 +12,29 @@ async function updateOne(query) {
     await models.updateOne(query)
 }
 
+async function setContents(data, content) {
+    let username = JSON.parse(data)
+    let name = username.name
+    let avatar = username.avatar
+
+    let userData = {
+        nickName: name,
+        content,
+        avatar,
+        createAt: new Date()
+    }
+
+    await insert(userData)
+}
+
+async function findandsort() {
+    return await models.findandsort()
+}
+
 module.exports = {
     insert,
     find,
-    updateOne
+    updateOne,
+    setContents,
+    findandsort
 }

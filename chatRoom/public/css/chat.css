@@ -7,8 +7,74 @@ body{
     overflow: hidden;
 }
 
+.header {
+    padding:0 20px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    position: fixed;
+    z-index: 99;
+}
+.title_name {
+    float: left;
+    font-size: 24px;
+    line-height: 50px;
+}
+
+span {
+    float: left;
+    z-index: 99;
+    height:40px; 
+    width:40px; 
+    display:block; 
+    position: fixed;
+    left: 90%;
+    top: 85%;
+} 
+
+.tips {
+    display: none;
+    float: left;
+    width:26px;
+}
+
+.tips:before {
+    content: attr(tips); 
+    height:26px; 
+    width:26px;
+    display:block; 
+    position:absolute; 
+    top:2px; 
+    left:0px; 
+    z-index:1; 
+    line-height:26px; 
+    background:#333; 
+    border-radius:40px;
+    -webkit-border-radius:40px;
+    -moz-border-radius:40px; 
+    color:#fff; 
+    text-align:center;
+}
+
+.tips:after {
+    content:''; 
+    height:0px; 
+    width:0px; 
+    display:block; 
+    position:absolute; 
+    bottom:2px; 
+    left:3px; 
+    border:10px 
+    transparent solid; 
+    border-top-color:#333; 
+    border-width:15px 10px 0px 10px; 
+}
+
 .content {
     position: absolute;
+    margin-top: 50px;
     padding: 10px;
     box-sizing: border-box;
     width: 100%;

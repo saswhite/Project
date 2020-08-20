@@ -10,12 +10,12 @@ async function find(query) {
     return model.find(query)
 }
 
-async function updateOne(query) {
-    await model.findOneAndUpdate(query)
+async function findandsort() {
+    return await model.find({}).sort({ createAt: 1 })
 }
 
 module.exports = {
     insertOne,
     find,
-    updateOne
+    findandsort
 }
