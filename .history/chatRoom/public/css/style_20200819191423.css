@@ -1,0 +1,15 @@
+body {
+  padding: 50px;
+  margin: 10px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  overflow: hidden;
+}
+
+a {
+  color: #00B7FF;
+}
+
+input {
+  outline: none;
+}
+

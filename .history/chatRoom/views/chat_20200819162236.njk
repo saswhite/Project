@@ -1,0 +1,35 @@
+{% extends 'layout.njk' %}
+
+{% block style %}
+    <meta http-equiv="Refresh" content="8"/>
+    <link rel='stylesheet' href='/css/chat.css'>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="content">
+
+            {% for items in users %}
+                <div class="box">
+                    <div class="box1">
+                        <img src='{{items.avatar}}' class='avatar'>
+                        <div class="chat_name">{{items.nickName}}</div>
+
+                    </div>
+                    <div class="box2">
+                        <div class="chat_content">{{items.content}}</div>
+                    </div>
+                    <div class="box3">
+                        <div class='chat_date'>{{items.createAt}}</div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+        <input type="text" class="text">
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="/js/chat.js"></script>
+{% endblock %}

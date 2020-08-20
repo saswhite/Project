@@ -1,0 +1,23 @@
+{% extends 'layout.njk' %}
+
+{% block style %}
+    <link rel='stylesheet' href='/css/chat.css'>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="content">
+            {% for items in users %}
+                <img src='{{items.avatar}}' class='avatar'>
+                <span>{{items.nickName}}</span>
+                <span class="chat_content">{{items.content}}</span>
+                <div class='date'>{{items.createAt}}</div>
+            {% endfor %}
+        </div>
+        <input type="text" class="text">
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="/js/chat.js"></script>
+{% endblock %}
