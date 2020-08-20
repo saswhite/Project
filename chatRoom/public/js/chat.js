@@ -2,11 +2,10 @@ let text = document.getElementsByClassName('text')[0]
 let tips = document.getElementsByClassName('tips')[0]
 let timer
 let userData
-
+let count = 1
 
 window.onload = function () {
     $('.content').scrollTop($('.content').prop('scrollHeight'))
-
 }
 
 getTips()
@@ -16,6 +15,7 @@ longPolling()
 text.onkeydown = function keydown(ev) {
     var event = ev || event
     if (event.keyCode == 13) {
+        count++
         $.ajax({
             type: 'post',
             url: 'http://192.168.8.195:3000/chat/chatBox',
@@ -48,6 +48,9 @@ text.onkeydown = function keydown(ev) {
 
 
                 $('.content').scrollTop($('.content').prop('scrollHeight'))
+
+
+
             },
             error: (error) => {
                 console.log(error)
@@ -83,7 +86,7 @@ function longPolling() {
                 if (userData && JSON.stringify(userData) != '[]') {
 
 
-                    let count = 0
+
                     let flag = false
                     let old = userData[userData.length - 1].createAt
                     result.flagT.filter((item) => {
@@ -95,7 +98,7 @@ function longPolling() {
 
                     })
                     if (flag) {
-                        count++
+
 
                         tips.setAttribute('tips', count)
 
@@ -107,7 +110,7 @@ function longPolling() {
 
                     } else {
                         $('.tips').css('display', 'none')
-                        tips.setAttribute('tips', '1')
+                        count = 1
                     }
 
                 }
@@ -116,7 +119,7 @@ function longPolling() {
 
             }
         })
-    }, 5000)
+    }, 3000)
 }
 
 
