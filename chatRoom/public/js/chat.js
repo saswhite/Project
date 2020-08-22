@@ -43,7 +43,7 @@ text.onkeydown = function keydown(ev) {
                     $('.content').html(html)
                 })
                 $('.content').scrollTop($('.content').prop('scrollHeight'))
-
+                userData = result
             },
             error: (error) => {
                 console.log(error)
