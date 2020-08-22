@@ -31,10 +31,15 @@ async function findandsort() {
     return await models.findandsort()
 }
 
+async function count(time) {
+    return await models.count(time)
+}
+
 module.exports = {
     insert,
     find,
     updateOne,
     setContents,
-    findandsort
+    findandsort,
+    count
 }

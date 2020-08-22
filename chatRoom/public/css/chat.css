@@ -14,7 +14,7 @@ body{
     height: 50px;
     background-color: #fff;
     border-bottom: 1px solid #ccc;
-    position: fixed;
+    position: absolute;
     z-index: 99;
 }
 .title_name {
@@ -29,7 +29,7 @@ span {
     height:40px; 
     width:40px; 
     display:block; 
-    position: fixed;
+    position: absolute;
     left: 90%;
     top: 85%;
 } 
@@ -85,7 +85,7 @@ span {
 }
 
 .input_box{
-    position: fixed;
+    position: absolute;
     top: 690px;
     width: 100%;
 }

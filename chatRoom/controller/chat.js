@@ -59,7 +59,9 @@ async function checkBox(ctx, next) {
     const { content } = ctx.request.body
 
 
+
     let flagT = await services.findandsort()
+
     if (flagT) {
         if (JSON.stringify(flagT) != '[]') {
             ctx.response.body = {
@@ -76,6 +78,10 @@ async function checkBox(ctx, next) {
 
 async function getTips(ctx, next) {
     let Tips = await services.find({})
+
+
+
+
     ctx.response.body = Tips
 }
 

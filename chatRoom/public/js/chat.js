@@ -2,7 +2,7 @@ let text = document.getElementsByClassName('text')[0]
 let tips = document.getElementsByClassName('tips')[0]
 let timer
 let userData
-let count = 1
+let count = 0
 
 window.onload = function () {
     $('.content').scrollTop($('.content').prop('scrollHeight'))
@@ -15,12 +15,11 @@ longPolling()
 text.onkeydown = function keydown(ev) {
     var event = ev || event
     if (event.keyCode == 13) {
-        count++
         $.ajax({
             type: 'post',
             url: 'http://192.168.8.195:3000/chat/chatBox',
             data: {
-                content: text.value
+                content: text.value,
             },
             success: (result) => {
                 text.value = ''
@@ -44,12 +43,6 @@ text.onkeydown = function keydown(ev) {
                     $('.content').html(html)
                 })
                 $('.content').scrollTop($('.content').prop('scrollHeight'))
-
-
-
-                $('.content').scrollTop($('.content').prop('scrollHeight'))
-
-
 
             },
             error: (error) => {
@@ -91,7 +84,6 @@ function longPolling() {
                     let old = userData[userData.length - 1].createAt
                     result.flagT.filter((item) => {
 
-                        tips.setAttribute('tips', '1')
                         flag = compareTime(item.createAt, old)
 
 
@@ -100,28 +92,27 @@ function longPolling() {
                     if (flag) {
 
 
+                        count++
+
                         tips.setAttribute('tips', count)
 
                         $('.tips').css('display', 'block')
 
-
                         userData = result.flagT
-
-
                     } else {
-                        $('.tips').css('display', 'none')
-                        count = 1
+
+                        console.log(1)
                     }
-
                 }
-
-
-
             }
         })
-    }, 3000)
+    }, 5000)
 }
 
+$('.tips').click(() => {
+    $('.tips').css('display', 'none')
+    count = 0
+})
 
 function stopPolling() {
     if (timer) {
@@ -150,7 +141,6 @@ function setBox(result) {
             </div>`
             $('.content').html(html)
         })
-        $('.content').scrollTop($('.content').prop('scrollHeight'))
     } else {
         console.log(result.content)
     }

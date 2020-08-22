@@ -14,8 +14,14 @@ async function findandsort() {
     return await model.find({}).sort({ createAt: 1 })
 }
 
+async function count(time) {
+    return await model.find({ createAt: { $gt: time } }).countDocuments()
+}
+
+
 module.exports = {
     insertOne,
     find,
-    findandsort
+    findandsort,
+    count
 }
