@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>waterfall</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin-left: 50px;
+        }
+
+        .item {
+            font-size: 30px;
+            font-weight: 700;
+            width: 250px;
+            margin-bottom: 15px;
+            margin-right: 15px;
+            background-color: #d524;
+            position: absolute;
+        }
+
+        .item1 {
+            background-color: #78cdd1;
+            height: 300px;
+        }
+
+        .item2 {
+            background-color: #faa755;
+            height: 220px;
+        }
+
+        .item3 {
+            background-color: #f2eada;
+            height: 280px;
+        }
+
+        .item4 {
+            background-color: #9b95c9;
+            height: 310px;
+        }
+
+        .item5 {
+            background-color: #f173ac;
+            height: 250px;
+        }
+
+        .item6 {
+            background-color: #feeeed;
+            height: 250px;
+        }
+
+        .item7 {
+            background-color: #bed742;
+            height: 150px;
+        }
+
+        .item8 {
+            background-color: #f58220;
+            height: 210px;
+        }
+
+        .item9 {
+            background-color: #cde6c7;
+            height: 170px;
+        }
+
+        .item10 {
+            background-color: #ffe600;
+            height: 290px;
+        }
+
+        .item11 {
+            background-color: #d3d7d4;
+            height: 115px;
+        }
+
+        .item12 {
+            background-color: #fedcbd;
+            height: 160px;
+        }
+
+        .item13 {
+            background-color: #543044;
+            height: 88px;
+        }
+
+        .item14 {
+            background-color: #40835e;
+            height: 120px;
+        }
+
+        .item15 {
+            background-color: #CCCCFF;
+            height: 190px;
+        }
+
+        .item16 {
+            background-color: #FFCC99;
+            height: 67px;
+        }
+
+        .item17 {
+            background-color: #FF6600;
+            height: 150px;
+        }
+
+        .item18 {
+            background-color: #CCFF99;
+            height: 200px;
+        }
+
+        .item19 {
+            background-color: #CCFFCC;
+            height: 123px;
+        }
+
+        .item20 {
+            background-color: #FFCCCC;
+            height: 96px;
+        }
+
+        .item21 {
+            background-color: #99CC99;
+            height: 130px;
+        }
+
+        .item22 {
+            background-color: #99CCCC;
+            height: 220px;
+        }
+
+        .item23 {
+            background-color: #FF9900;
+            height: 119px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item item1">1</div>
+        <div class="item item2">2</div>
+        <div class="item item3">3</div>
+        <div class="item item4">4</div>
+        <div class="item item5">5</div>
+        <div class="item item6">6</div>
+        <div class="item item7">7</div>
+        <div class="item item8">8</div>
+        <div class="item item9">9</div>
+        <div class="item item10">10</div>
+        <div class="item item11">11</div>
+        <div class="item item12">12</div>
+        <div class="item item13">13</div>
+        <div class="item item14">14</div>
+        <div class="item item15">15</div>
+        <div class="item item16">16</div>
+        <div class="item item17">17</div>
+        <div class="item item18">18</div>
+        <div class="item item19">19</div>
+        <div class="item item20">20</div>
+        <div class="item item21">21</div>
+        <div class="item item22">22</div>
+        <div class="item item23">23</div>
+    </div>
+</body>
+<script>
+    //定义
+    let items = document.getElementsByClassName('item');
+
+    //定义间隙
+    let gap = 15;
+
+    waterfall()
+
+    function waterfall() {
+        //确定每行的列数
+        let pageWidth = window.innerWidth;
+        let itemWidth = items[0].offsetWidth;
+        let columns = parseInt(pageWidth / (itemWidth + gap));
+        let arr = []//定义一个数组来储存元素的高度
+
+        for (let i = 0; i < items.length; i++) {
+            if (i < columns) {//设置第一行的每一列的位置
+                items[i].style.top = 0;
+                items[i].style.left = (itemWidth + gap) * i + 'px';
+                arr.push(items[i].offsetHeight);
+            } else {//在设置其它行位置之前先找到每一行的最小高度
+                let minHeight = arr[0];
+                let index = 0;
+                for (let j = 0; j < arr.length; j++) {
+                    if (minHeight > arr[j]) {
+                        minHeight = arr[j];
+                        index = j
+                    }
+                }
+                //设置其它行的位置
+                items[i].style.left = items[index].offsetLeft + 'px';
+                items[i].style.top = arr[index] + gap + 'px';
+
+                //修改每一列的最小高度
+                arr[index] = arr[index] + items[i].offsetHeight + gap;
+
+            }
+
+        }
+    }
+
+
+    //当页面改变时，动态的显示
+    window.onresize = function () {
+        waterfall()
+    }
+</script>
+
+</html>
