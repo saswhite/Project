@@ -2,17 +2,10 @@ const { getRandomImg: getAvatar } = require('../common/utils')
 const services = require('../services/chat')
 const _ = require('lodash')
 
-async function login(ctx, next) {
-    await ctx.render('login')
-}
+async function login(ctx, next) { await ctx.render('login') }
 
 async function getChat(ctx, next) {
-    const { name } = ctx.request.body
-
-    let data = {
-        status: 'success'
-    }
-    let avatar = await getAvatar()
+    const { name } = ctx.request.body; let data = { status: 'success' }; let avatar = await getAvatar()
     ctx.cookies.set('username', JSON.stringify({ name, avatar }))
 
     if (name) {
@@ -45,14 +38,17 @@ async function chat(ctx, next) {
     } else {
         ctx.redirect('/')
     }
+
 }
 
 async function getChatBox(ctx, next) {
     const { content } = ctx.request.body
+
     let user = ctx.cookies.get('username')
     await services.setContents(user, content)
     let result = await services.find({})
     ctx.response.body = result
+
 }
 
 async function checkBox(ctx, next) {
@@ -72,6 +68,8 @@ async function checkBox(ctx, next) {
             }
         }
     }
+
+
 }
 
 async function getTips(ctx, next) {

@@ -1,0 +1,123 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    overflow: hidden;
+}
+
+.title_name {
+    font-size: 24px;
+    line-height: 50px;
+    padding:0 20px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    position: fixed;
+    z-index: 99;
+}
+
+
+.content {
+    position: absolute;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 680px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    
+}
+
+.input_box{
+    position: fixed;
+    top: 690px;
+    width: 100%;
+}
+
+.text{
+    float: left;
+    display: block;
+    width: 100%;
+    height: 50px;
+    font-size: 24px;
+    border-radius: 40px;
+    padding: 0 50px;
+    box-sizing: border-box;
+    color: #bdbdbd;
+    border: 1px solid #bdbdbd;
+}
+.smile{
+    float: left !important;
+    position: absolute;
+    left: 10px;
+    top: 3px;
+}
+.avatar{
+    display: inline-block;
+    margin: 0 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.chat_content{
+    position: absolute;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 10px 20px 10px 50px;
+    display: inline-block;
+    text-align: center;
+    min-width: 300px;
+    max-width: 400px;
+    min-height: 50px;
+    line-height: 50px;
+    border-radius: 10px;
+    background-image: linear-gradient( to right,#8af4b0, #8fd3f4) ;
+    opacity: 0.6;
+    word-wrap:break-word
+}
+
+.chat_content::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: -7px;
+    top: 7px;
+    width:0; 
+    height:0; 
+    border-top:8px solid transparent;
+    border-bottom:8px solid transparent; 
+    border-right:8px solid #8af4b0; 
+}
+
+.chat_name {
+    position: relative;
+    text-align: center;
+}
+
+.chat_date{
+    position: relative;
+    top:10px;
+    margin: 20px 40px;
+}
+
+.box{
+    width: 300px;
+    height: 100px;
+}
+
+.box1,.box2{
+    height: 200px;
+    float: left;
+}
+
+.box3{
+    float: left;
+    margin-top: -80px;
+    width: 500px;
+    z-index: 10;
+}

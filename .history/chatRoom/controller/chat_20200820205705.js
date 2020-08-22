@@ -45,10 +45,12 @@ async function chat(ctx, next) {
     } else {
         ctx.redirect('/')
     }
+
 }
 
 async function getChatBox(ctx, next) {
     const { content } = ctx.request.body
+
     let user = ctx.cookies.get('username')
     await services.setContents(user, content)
     let result = await services.find({})

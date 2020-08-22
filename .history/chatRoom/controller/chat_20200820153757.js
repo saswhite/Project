@@ -45,14 +45,17 @@ async function chat(ctx, next) {
     } else {
         ctx.redirect('/')
     }
+
 }
 
 async function getChatBox(ctx, next) {
     const { content } = ctx.request.body
+
     let user = ctx.cookies.get('username')
     await services.setContents(user, content)
     let result = await services.find({})
     ctx.response.body = result
+
 }
 
 async function checkBox(ctx, next) {
@@ -60,23 +63,24 @@ async function checkBox(ctx, next) {
 
 
     let flagT = await services.findandsort()
+
     if (flagT) {
         if (JSON.stringify(flagT) != '[]') {
-            ctx.response.body = {
-                flagT,
-                content: 'success'
-            }
-        } else {
-            ctx.response.body = {
-                content: 'failed'
-            }
+            ctx.response.body = flagT
         }
     }
+    else {
+        ctx.response.body = {
+            content: '设置失败'
+        }
+    }
+
+
 }
 
 async function getTips(ctx, next) {
     let Tips = await services.find({})
-    ctx.response.body = Tips
+    ctx.response.body = tips
 }
 
 module.exports = {
