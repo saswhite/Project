@@ -1,0 +1,16 @@
+{
+  "id": "2035042",
+  "name": "taobao",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "4166137",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    }
+  ]
+}
